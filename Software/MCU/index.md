@@ -4,9 +4,9 @@
 Microcontroller code for NMRduino.  Compatible with [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)
 
 ## Latest version
-**Last update:** 22/11/2024. [Code available here](https://github.com/NMRduino/NMRduino/tree/main/Software/MCU/latest)  
+**Last update:** 02/06/2026. [Code available here](https://github.com/NMRduino/NMRduino/tree/main/Software/MCU/latest)  
 
-**Compatibility:** UI version 3.43+.
+**Compatibility:** UI version 3.5+.
 
 **Compilation:** Compile using a Teensyduino-extended Arduino IDE using options *"Teensy 4.1", "600 MHz", "Faster"*.
 

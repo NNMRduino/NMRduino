@@ -1,6 +1,6 @@
-/*  NMRduino open core version 1.01
-*   Compatible with Teensy 4.1 and NMRduino UI version(s) 3.34.3
-*   Copyright (C) 2024, by Michael Tayler and Sven Bodenstedt
+/*  NMRduino open core version 1.02. 
+*   Compatible with Teensy 4.1 and NMRduino UI version(s) 3.35
+*   Copyright (C) 2026, by Michael Tayler and Sven Bodenstedt
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
