@@ -120,6 +120,7 @@ void qtm_start(){
   gpiocounter=1;
   global_data_counter=0;
   state=State_Acquire;
+  for(uint32_t i=0; i<n_data_points;i++){acq_data[i]=0;}
   TMR4_CSCTRL2 |= TMR_CSCTRL_TCF2EN | TMR_CSCTRL_TCF2; 
   NVIC_ENABLE_IRQ(IRQ_QTIMER4);
 }
