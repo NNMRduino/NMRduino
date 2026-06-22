@@ -33,6 +33,7 @@ volatile byte cword;
 #include "MCP4822.h"
 #include "LTC1859.h"
 #include "QTM.h"
+//#include "QTMSS.h"
 
 void seq_run(){  
   switch(seq_acquisition_mode) {  

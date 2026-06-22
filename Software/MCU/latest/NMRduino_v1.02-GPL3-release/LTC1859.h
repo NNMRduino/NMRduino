@@ -26,6 +26,7 @@
 #define ADCBYTES_CH1_10V  (B10010100 << 8)  //Amplified input
 
 volatile uint16_t acq_data[2*65536];        // array for data storage
+volatile uint32_t temp_data;
 const uint16_t ADCBYTES_5V = ADCBYTES_CH0_5V;
 const uint16_t ADCBYTES_10V = ADCBYTES_CH0_10V;
 volatile uint16_t adc_byte, data_point;
