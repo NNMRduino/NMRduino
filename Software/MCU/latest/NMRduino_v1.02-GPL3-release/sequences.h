@@ -27,13 +27,16 @@ uint32_t gpio_set[MAX_NUMBER_EVENTS];    // Event GPIO set register bits
 uint32_t *gpio_time_ptr, *gpio_clr_ptr, *gpio_set_ptr;
 uint32_t n_events, n_data_points;
 volatile uint32_t gpiocounter, global_data_counter, local_data_counter, n_local_data_points, n_us_acq;
-volatile bool end_event_flag, end_data_flag, acq_pt_available;
+#define n_SS_bit 5
+volatile uint32_t SS_data_counter, SS_data_temp;
+volatile bool end_event_flag, end_data_flag, acq_pt_available, halfrate;
 volatile byte cword;
+
 
 #include "MCP4822.h"
 #include "LTC1859.h"
 #include "QTM.h"
-//#include "QTMSS.h"
+//#include "QTMSS2.h"
 
 void seq_run(){  
   switch(seq_acquisition_mode) {  
@@ -60,6 +63,7 @@ void seq_run(){
          gpio_set_ptr  = gpio_set;      
          gpio_clr_ptr  = gpio_clr;
          ADC_init_5V();
+         halfrate=false;          // hack for halved sampling rate. Comment if not used.
          qtm_init(); qtm_start();
     break;
   }

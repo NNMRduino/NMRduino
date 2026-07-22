@@ -69,7 +69,7 @@ void ADC_init_5V() {ADC_init(ADCBYTES_5V);}
 
 void transfer_data(unsigned int data_length){
   for(unsigned int i=0; i < data_length; i++){ 
-    if(acq_data[i]==0){acq_data[i]=1;}
+    if(acq_data[i]==0){acq_data[i]=1;}    // Exact zeros are sometimes lost during serial transfer. Exact zeros are shifted by +1 bit to avoid this problem.
     Serial.write((uint8_t) ((acq_data[i] >> 8) & 0xFF));
     Serial.write((uint8_t) ((acq_data[i]     ) & 0xFF));
     acq_data[i]=0;

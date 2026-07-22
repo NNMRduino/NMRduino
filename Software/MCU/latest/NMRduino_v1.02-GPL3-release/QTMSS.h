@@ -20,6 +20,8 @@
 #define cwADC  0x0A
 #define cwDAC  0x0D
 #define cwGPIO 0x00
+#define n_SS 32
+#define n_SS_bit 5
 
 void qtm_stop() { 
     TMR4_CSCTRL0 = 0; TMR4_SCTRL0 = 0; TMR4_CTRL0 = 0; 
@@ -48,7 +50,7 @@ FASTRUN void nmrduino_isr() {
         temp_data += acq_pt_5V(); 	// acquires 1 point
         local_data_counter++;
 
-        if(local_data_counter < n_us_acq) 		// run supersampling
+        if(local_data_counter < n_ss) 		// run supersampling
         {   
           TMR4_COMP12 = (750) - 1;  	// dt to 10 µs (100 ksps)
           TMR4_COMP22 = (750) - 1;        
@@ -56,7 +58,7 @@ FASTRUN void nmrduino_isr() {
         }
 	      else 						// overflow = store point
 	      {     
-	        acq_data[global_data_counter] = (temp_data >> 5) ; 	// bit shift to divide by 32
+	        acq_data[global_data_counter] = (temp_data >> n_SS_bit) ; 	// bit shift to divide by 32
           temp_data = 0;                                      // Use 5 for n_us_acq = 32. Adjust as needed.
 	        global_data_counter++;
 	        local_data_counter=0;			// reset supersampling counter
