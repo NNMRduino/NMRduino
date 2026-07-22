@@ -35,13 +35,13 @@ FASTRUN void nmrduino_isr() {
    if(state==State_acq_get){
         acq_data[global_data_counter] = acq_pt_5V();
         
-        if(halfrate){             // BEGIN hack for halved sampling rate [store every other data point]
-          local_data_counter++;
-          global_data_counter++;
-        }
-         halfrate=!halfrate;      // END hack for halved sampling rate
-        // local_data_counter++;  // Regular code. Uncomment if "halved sample rate" option not used
-        // global_data_counter++; // Regular code
+        //if(halfrate){             // BEGIN hack for halved sampling rate [store every other data point]
+        //  local_data_counter++;
+        //  global_data_counter++;
+        //}
+        // halfrate=!halfrate;      // END hack for halved sampling rate
+         local_data_counter++;  // Regular code. Uncomment if "halved sample rate" option not used
+         global_data_counter++; // Regular code
         
         if(local_data_counter < n_local_data_points){
           n_us_acq = ( (*gpio_set_ptr >> 4) & 0xFFF ); // dwell time between data points.  Max value 87 -> ~1170 samples/s.    
@@ -53,8 +53,8 @@ FASTRUN void nmrduino_isr() {
           state = State_acq_rtn; asm volatile ("dsb"); return;}
    }
    else if(state==State_acq_rtn){
-          gpiocounter+=((n_us_acq * 10 * n_local_data_points * 2) + 4); // hack for halved sampling rate
-          // gpiocounter+=((n_us_acq * 10 * n_local_data_points) + 4); // Regular code
+          // gpiocounter+=((n_us_acq * 10 * n_local_data_points * 2) + 4); // hack for halved sampling rate
+           gpiocounter+=((n_us_acq * 10 * n_local_data_points) + 4); // Regular code
           state=State_Acquire;
           TMR4_COMP12 = 75 - 1;  
           TMR4_COMP22 = 75 - 1;

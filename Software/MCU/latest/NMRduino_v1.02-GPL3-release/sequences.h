@@ -63,7 +63,7 @@ void seq_run(){
          gpio_set_ptr  = gpio_set;      
          gpio_clr_ptr  = gpio_clr;
          ADC_init_5V();
-         halfrate=false;          // hack for halved sampling rate. Comment if not used.
+         //halfrate=false;          // hack for halved sampling rate. Comment if not used.
          qtm_init(); qtm_start();
     break;
   }
