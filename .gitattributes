@@ -1,0 +1,5 @@
+# PCB fabrication output, not PL/SQL source code
+Hardware/*.pls linguist-generated=true
+
+# Compiled firmware output
+Software/MCU/**/*.hex linguist-generated=true
